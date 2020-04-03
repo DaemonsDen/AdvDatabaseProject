@@ -1,0 +1,5 @@
+mvnw spring-javaformat:apply
+
+mvnw package
+
+mvnw spring-boot:run
