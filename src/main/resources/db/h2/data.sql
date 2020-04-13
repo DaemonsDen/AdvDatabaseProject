@@ -5,12 +5,10 @@ INSERT INTO employees VALUES (4, 'Rafael', 'Ortega');
 INSERT INTO employees VALUES (5, 'Henry', 'Stevens');
 INSERT INTO employees VALUES (6, 'Sharon', 'Jenkins');
 
-INSERT INTO dependents VALUES (101, 1, 111, 'Sue', 'Jenkins', '2004-12-31', '123-45-6789');
+INSERT INTO employeeDependents VALUES (1, 1, 'Sue', 'Carter', '2004-12-31', '123-45-6789');
 
-INSERT INTO insurance VALUES (201, 'VSP', 'Aetna', 'PPO');
+INSERT INTO insurance VALUES (1, 'VSP', 'Aetna', 'PPO');
 
-INSERT INTO insurance VALUES (501, 'vsp', 'Aetna', 'PPO');
-
-INSERT INTO role VALUES (601, 'Developer', '2004-12-31');
+INSERT INTO role VALUES (1, 'Developer', '2004-12-31');
 
 

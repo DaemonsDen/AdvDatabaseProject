@@ -10,10 +10,9 @@ CREATE TABLE employees (
 );
 CREATE INDEX employees_last_name ON employees (last_name);
 
-CREATE TABLE dependents (
-  dependentId   INTEGER IDENTITY PRIMARY KEY,
-  empId         INTEGER ,
-  insuranceId	INTEGER ,
+CREATE TABLE employeedependents (
+  id   INTEGER IDENTITY PRIMARY KEY,
+  employee_num  INTEGER,
   first_name 	VARCHAR(30),
   last_name  	VARCHAR(30),
   DOB			VARCHAR(30),

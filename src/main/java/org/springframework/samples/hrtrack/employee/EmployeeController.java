@@ -68,15 +68,16 @@ class EmployeeController {
 	}
 
 	@PostMapping("updateEmployee/{id}")
-	public String updateEmployee(@PathVariable("id") int id, @Valid Employee employee, BindingResult result, Model model) {
+	public String updateEmployee(@PathVariable("id") int id, @Valid Employee employee, BindingResult result,
+			Model model) {
 		if (result.hasErrors()) {
 			employee.setId(id);
 			return "employeeOverview";
 		}
 
 		employeeRepo.save(employee);
-		//model.addAttribute("employee", employeeRepo.findAll());
-		//return "redirect:employees";
+		// model.addAttribute("employee", employeeRepo.findAll());
+		// return "redirect:employees";
 		return "redirect:../employees.html";
 	}
 
@@ -88,7 +89,7 @@ class EmployeeController {
 
 		employeeRepo.save(employee);
 		model.addAttribute("employee", employeeRepo.findAll());
-		//return "redirect:employees";
+		// return "redirect:employees";
 		return "employees";
 	}
 
@@ -152,6 +153,14 @@ class EmployeeController {
 				.orElseThrow(() -> new IllegalArgumentException("Invalid employee Id:" + id));
 		model.addAttribute("employee", employee);
 		return "employees/employeeDetails";
+	}
+
+	@GetMapping("/dependentListOverview.html")
+	public String showEmployeeDependents(Map<String, Object> model) {
+		Dependents dependents = new Dependents();
+		dependents.getDependentList().addAll(this.dependentRepo.findAll());
+		model.put("dependents", dependents);
+		return "employees/dependentDetails";
 	}
 
 }
