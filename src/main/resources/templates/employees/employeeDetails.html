@@ -36,13 +36,21 @@
 							</div>
 
 							<div class="form-group col-md-8">
-								<a th:href="@{/employeeBenefitsOverview.html}"
-								class="btn btn-primary"><i class="glyphicon glyphicon-user fas fa-user-edit ml-2"></i></a>
+								<a th:href="@{../dependentListOverview/{id}(id=${employee.id})}"
+								class="btn btn-primary">Dependents
+								<i class="glyphicon glyphicon-user fas fa-user-edit ml-2"></i></a>
 							</div>
 
 							<div class="form-group col-md-8">
-								<input type="submit" class="btn btn-primary"
-									value="Update">
+								<a th:href="@{../editBenefits/{id}(id=${employee.id})}"
+								class="btn btn-primary">Benefits
+								<i class="glyphicon glyphicon-user fas fa-user-edit ml-2"></i></a>
+							</div>
+
+							<div class="form-group col-md-8">
+								<a th:href="@{/employeeBenefitsOverview.html}"
+								class="btn btn-primary">Update
+								<i class="glyphicon glyphicon-save fas fa-user-edit ml-2"></i></a>
 							</div>
 						</div>
 					</form>

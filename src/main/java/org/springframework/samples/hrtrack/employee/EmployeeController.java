@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +30,22 @@ class EmployeeController {
 
 	private final DependentRepository dependentRepo;
 
+	private final InsuranceTypeRepository insuranceTypeRepo;
+
 	// private final InsuranceRepository insuranceRepo;
 	// private final RoleRepository roleRepo;
 
-	public EmployeeController(EmployeeRepository empRepo, DependentRepository depRepo) {
+	public EmployeeController(EmployeeRepository empRepo, DependentRepository depRepo,
+			InsuranceTypeRepository insRepo) {
 		this.employeeRepo = empRepo;
 		this.dependentRepo = depRepo;
+		this.insuranceTypeRepo = insRepo;
 	}
+
+	@ModelAttribute("insuranceTypes")
+    public Collection<InsuranceType> populateInsuranceTypes() {
+        return this.insuranceTypeRepo.findAll();
+    }
 
 	@GetMapping("/employees.html")
 	public String showEmployeeList(Map<String, Object> model) {
@@ -61,8 +72,7 @@ class EmployeeController {
 
 	@GetMapping("editEmployee/{id}")
 	public String showUpdateForm(@PathVariable("id") int id, Model model) {
-		Employee employee = employeeRepo.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid employee Id:" + id));
+		Employee employee = employeeRepo.findById(id);
 		model.addAttribute("employee", employee);
 		return "employees/employeeDetails";
 	}
@@ -148,19 +158,29 @@ class EmployeeController {
 	}
 
 	@GetMapping("editBenefits/{id}")
-	public String showBenefitsForm(@PathVariable("id") int id, Model model) {
-		Employee employee = employeeRepo.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid employee Id:" + id));
-		model.addAttribute("employee", employee);
-		return "employees/employeeDetails";
+	public String showBenefitsForm(@PathVariable("id") int id, Map<String, Object> model) {
+		InsuranceTypes HealthInsurances = new InsuranceTypes();
+		HealthInsurances.getInsuranceTypesList().addAll(this.insuranceTypeRepo.findByInsurancetype(1));
+		model.put("healthInsurance", HealthInsurances);
+
+		InsuranceTypes DentalInsurances = new InsuranceTypes();
+		DentalInsurances.getInsuranceTypesList().addAll(this.insuranceTypeRepo.findByInsurancetype(2));
+		model.put("dentalInsurance", DentalInsurances);
+
+		InsuranceTypes VisionInsurances = new InsuranceTypes();
+		VisionInsurances.getInsuranceTypesList().addAll(this.insuranceTypeRepo.findByInsurancetype(3));
+		model.put("visionInsurance", VisionInsurances);
+
+		return "employees/employeeBenefits";
 	}
 
-	@GetMapping("/dependentListOverview.html")
-	public String showEmployeeDependents(Map<String, Object> model) {
+	@GetMapping("dependentListOverview/{id}")
+	public String showEmployeeDependents(@PathVariable("id") int id, Map<String, Object> model) {
 		Dependents dependents = new Dependents();
-		dependents.getDependentList().addAll(this.dependentRepo.findAll());
+		dependents.getDependentList().addAll(this.dependentRepo.findByEmployeeNum(id));
 		model.put("dependents", dependents);
-		return "employees/dependentDetails";
+
+		return "employees/dependentList";
 	}
 
 }

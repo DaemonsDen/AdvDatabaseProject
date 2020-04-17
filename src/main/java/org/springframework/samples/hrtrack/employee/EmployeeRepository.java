@@ -12,4 +12,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
 	Collection<Employee> findAll() throws DataAccessException;
 
+	Employee findById(int inId) throws DataAccessException;
+
 }

@@ -1,6 +1,6 @@
 DROP TABLE employees IF EXISTS;
 DROP TABLE dependents IF EXISTS;
-DROP TABLE insurance IF EXISTS;
+DROP TABLE insurancetypes IF EXISTS;
 DROP TABLE role IF EXISTS;
 
 CREATE TABLE employees (
@@ -19,11 +19,10 @@ CREATE TABLE employeedependents (
   SSN			VARCHAR(12)
 );
 
-CREATE TABLE insurance (
-  insuranceId		INTEGER IDENTITY PRIMARY KEY,
-  visionInsurance	VARCHAR(30),
-  dentalInsurance	VARCHAR(30),
-  healthInsurance	VARCHAR(30)
+CREATE TABLE insurancetypes (
+  id				INTEGER IDENTITY PRIMARY KEY,
+  insurancetype		INTEGER,
+  name				VARCHAR(30)
 );
 
 CREATE TABLE role (
