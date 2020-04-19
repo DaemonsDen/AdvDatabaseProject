@@ -43,9 +43,9 @@ class EmployeeController {
 	}
 
 	@ModelAttribute("insuranceTypes")
-    public Collection<InsuranceType> populateInsuranceTypes() {
-        return this.insuranceTypeRepo.findAll();
-    }
+	public Collection<InsuranceType> populateInsuranceTypes() {
+		return this.insuranceTypeRepo.findAll();
+	}
 
 	@GetMapping("/employees.html")
 	public String showEmployeeList(Map<String, Object> model) {
@@ -171,6 +171,10 @@ class EmployeeController {
 		VisionInsurances.getInsuranceTypesList().addAll(this.insuranceTypeRepo.findByInsurancetype(3));
 		model.put("visionInsurance", VisionInsurances);
 
+		Employee emp = new Employee();
+		emp = employeeRepo.findById(id);
+		model.put("employee", emp);
+
 		return "employees/employeeBenefits";
 	}
 
@@ -181,6 +185,22 @@ class EmployeeController {
 		model.put("dependents", dependents);
 
 		return "employees/dependentList";
+	}
+
+	@PostMapping("employees/updateInsurance/{id}")
+	public String updateEmployeeInsurance(@PathVariable("id") int id, @Valid Employee emp, BindingResult result,
+			Model model) {
+		if (result.hasErrors()) {
+			return "employeeOverview";
+		}
+
+		Employee targetEmp = employeeRepo.findById(id);
+		targetEmp.setHealthInsurance(emp.getHealthInsurance());
+
+		employeeRepo.save(targetEmp);
+		// model.addAttribute("employee", employeeRepo.findAll());
+		// return "redirect:employees";
+		return "redirect:../../employees.html";
 	}
 
 }

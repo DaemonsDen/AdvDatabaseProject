@@ -29,12 +29,19 @@ import org.springframework.samples.hrtrack.model.Person;
 public class Employee extends BaseEntity {
 
 	@Column(name = "first_name")
-	@NotEmpty
 	private String firstName;
 
 	@Column(name = "last_name")
-	@NotEmpty
 	private String lastName;
+
+	@Column(name = "health_insurance")
+	private int healthInsurance;
+
+	@Column(name = "dental_insurance")
+	private int dentalInsurance;
+
+	@Column(name = "vision_insurance")
+	private int visionInsurance;
 
 	public String getFirstName() {
 		return this.firstName;
@@ -50,6 +57,30 @@ public class Employee extends BaseEntity {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public int getHealthInsurance() {
+		return this.healthInsurance;
+	}
+
+	public void setHealthInsurance(int newType) {
+		this.healthInsurance = newType;
+	}
+
+	public int getDentalInsurance() {
+		return this.dentalInsurance;
+	}
+
+	public void setDentalInsurance(int newType) {
+		this.dentalInsurance = newType;
+	}
+
+	public int getVisionInsurance() {
+		return this.visionInsurance;
+	}
+
+	public void setVisionInsurance(int newType) {
+		this.visionInsurance = newType;
 	}
 
 }

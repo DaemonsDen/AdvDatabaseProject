@@ -4,9 +4,12 @@ DROP TABLE insurancetypes IF EXISTS;
 DROP TABLE role IF EXISTS;
 
 CREATE TABLE employees (
-  id         INTEGER IDENTITY PRIMARY KEY,
-  first_name VARCHAR(30),
-  last_name  VARCHAR(30)
+  id         		INTEGER IDENTITY PRIMARY KEY,
+  first_name 		VARCHAR(30),
+  last_name  		VARCHAR(30),
+  health_insurance	INTEGER,
+  dental_insurance	INTEGER,
+  vision_insurance	INTEGER
 );
 CREATE INDEX employees_last_name ON employees (last_name);
 

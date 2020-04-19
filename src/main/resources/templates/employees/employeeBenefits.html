@@ -16,11 +16,11 @@
     <div class="card">
       <div class="card-body">
         <div class="col-md-10">
-          <form action="#" th:action="@{/employees/addNewEmployee}" th:object="${employee}" method="post">
+          <form action="#" th:action="@{/employees/updateInsurance/{id}(id=${employee.id})}" th:object="${employee}" method="post">
             <div class="row">              
               <div class="form-group col-md-8">
                 <label for="health" class="col-form-label">Health:</label> 
-                <select class="form-control">
+                <select class="form-control" th:field="*{healthInsurance}">
                   <option th:each="hinsType : ${healthInsurance.insuranceTypesList}" th:text="${hinsType.name}" th:value="${hinsType.id}" >[option]</option>
                 </select>              
               </div>
