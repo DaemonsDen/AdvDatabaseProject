@@ -15,6 +15,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
 	Employee findById(int inId) throws DataAccessException;
 
-	//@Query(value = "SELECT id.nextval FROM dual", nativeQuery = true)
- 	//int getNextSeriesId();
+	// @Query(value = "SELECT id.nextval FROM dual", nativeQuery = true)
+	// int getNextSeriesId();
+
 }

@@ -73,22 +73,19 @@ class EmployeeController {
 	@GetMapping("editEmployee/{id}")
 	public String showUpdateForm(@PathVariable("id") int id, Model model) {
 		Employee employee;
-		if(id == 0)
-		{
+		if (id == 0) {
 			employee = new Employee();
 		}
-		else
-		{
+		else {
 			employee = employeeRepo.findById(id);
 		}
 
 		model.addAttribute("employee", employee);
 		return "employees/employeeDetails";
 	}
-	
+
 	@PostMapping("updateEmployee/")
-	public String updateNewEmployee( @Valid Employee employee, BindingResult result,
-			Model model) {
+	public String updateNewEmployee(@Valid Employee employee, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "employeeOverview";
 		}

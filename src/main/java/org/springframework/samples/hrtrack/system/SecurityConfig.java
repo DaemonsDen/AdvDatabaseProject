@@ -9,18 +9,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  extends WebSecurityConfigurerAdapter  {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()        
-		   .antMatchers("/employees/**","/employees","/employees.html").access("hasRole('ROLE_ADMIN')")
-           .and().formLogin()
-           .and()
-           .logout().permitAll();
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/employees/**", "/employees", "/employees.html")
+				.access("hasRole('ROLE_ADMIN')").and().formLogin().and().logout().permitAll();
 	}
 
-    @Override
+	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
 	}
@@ -30,4 +27,5 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter  {
 		auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("ADMIN");
 		auth.inMemoryAuthentication().withUser("manager").password("{noop}password").roles("ADMIN");
 	}
+
 }
