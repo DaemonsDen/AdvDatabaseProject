@@ -19,12 +19,20 @@
       </tr>
     </thead>
     <tbody>
+      <div>
       <tr th:each="employee : ${employees.employeeList}">
         <td th:text="${employee.firstName + ' ' + employee.lastName}"></td>
         <td><a th:href="@{/editEmployee/{id}(id=${employee.id})}"
           class="btn btn-primary"><i class="glyphicon glyphicon-user fas fa-user-edit ml-2"></i></a></td>
       </tr>
+      
+    </div>
     </tbody>
-  </table>      
+  </table>  
+  <div class="form-group col-md-8">
+    <a th:href="@{editEmployee/0}"
+    class="btn btn-primary">Add Employee
+    <i class="glyphicon glyphicon-user fas fa-user-edit ml-2"></i></a>  
+  </div>    
 </body>
 </html>

@@ -54,6 +54,7 @@
                       <span>Employees</span>
                   </li>
                   
+                  <!--
                   <li th:replace="::menuItem ('/employeeOverview.html','employeeoverview','Employees Details','user','employee overview')">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     <span>Employees Details</span>
@@ -77,6 +78,12 @@
                   <li th:replace="::menuItem ('/dependentListOverview.html','dependentlistoverview','employee dependent','plus','employee dependents')">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     <span>Dependents</span>
+                  </li> 
+                -->
+
+                  <li th:replace="::menuItem ('@{/logout}','dependentlistoverview','Sign Out','plus','Sign Out')">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span>Sign Out</span>
                   </li> 
 
                   <!--

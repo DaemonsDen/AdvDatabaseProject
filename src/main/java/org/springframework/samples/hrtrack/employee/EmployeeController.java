@@ -72,9 +72,31 @@ class EmployeeController {
 
 	@GetMapping("editEmployee/{id}")
 	public String showUpdateForm(@PathVariable("id") int id, Model model) {
-		Employee employee = employeeRepo.findById(id);
+		Employee employee;
+		if(id == 0)
+		{
+			employee = new Employee();
+		}
+		else
+		{
+			employee = employeeRepo.findById(id);
+		}
+
 		model.addAttribute("employee", employee);
 		return "employees/employeeDetails";
+	}
+	
+	@PostMapping("updateEmployee/")
+	public String updateNewEmployee( @Valid Employee employee, BindingResult result,
+			Model model) {
+		if (result.hasErrors()) {
+			return "employeeOverview";
+		}
+
+		employeeRepo.save(employee);
+		// model.addAttribute("employee", employeeRepo.findAll());
+		// return "redirect:employees";
+		return "redirect:../employees.html";
 	}
 
 	@PostMapping("updateEmployee/{id}")
