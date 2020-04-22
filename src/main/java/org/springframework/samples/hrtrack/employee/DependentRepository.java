@@ -7,15 +7,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
+public interface DependentRepository extends CrudRepository<Dependent, Integer> {
 
-	Collection<Employee> findAll() throws DataAccessException;
+	Collection<Dependent> findAll() throws DataAccessException;
 
-	Employee findById(int inId) throws DataAccessException;
-
-	// @Query(value = "SELECT id.nextval FROM dual", nativeQuery = true)
-	// int getNextSeriesId();
+	Collection<Dependent> findByEmployeeNum(int empNum) throws DataAccessException;
 
 }

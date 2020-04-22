@@ -53,11 +53,45 @@
                       <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                       <span>Employees</span>
                   </li>
+                  
+                  <!--
+                  <li th:replace="::menuItem ('/employeeOverview.html','employeeoverview','Employees Details','user','employee overview')">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span>Employees Details</span>
+                  </li>                  
   
+                  <li th:replace="::menuItem ('/addEmployee.html','addemployee','Add Employee','plus','add employee')">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span>Add Employee</span>
+                  </li>
+                  
+                  <li th:replace="::menuItem ('/addDependent.html','adddependent','add dependent','plus','add dependent')">
+                    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                    <span>Employees Details</span>
+                  </li>
+                  
+                  <li th:replace="::menuItem ('/employeeBenefitsOverview.html','employeebenefitsoverview','employee benefits','plus','employee benefits')">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span>Employees Benefits</span>
+                  </li> 
+
+                  <li th:replace="::menuItem ('/dependentListOverview.html','dependentlistoverview','employee dependent','plus','employee dependents')">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span>Dependents</span>
+                  </li> 
+                -->
+
+                  <li th:replace="::menuItem ('@{/logout}','dependentlistoverview','Sign Out','plus','Sign Out')">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span>Sign Out</span>
+                  </li> 
+
+                  <!--
                   <li th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
                       <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
                       <span>Error</span>
                   </li>
+                  -->
   
               </ul>
           </div>

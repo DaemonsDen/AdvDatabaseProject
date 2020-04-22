@@ -25,23 +25,34 @@ import org.springframework.samples.hrtrack.model.BaseEntity;
 import org.springframework.samples.hrtrack.model.Person;
 
 @Entity
-@Table(name = "employees")
-public class Employee extends BaseEntity {
+@Table(name = "employeedependents")
+public class Dependent extends BaseEntity {
+
+	@Column(name = "employee_num")
+	@NotEmpty
+	private int employeeNum;
 
 	@Column(name = "first_name")
+	@NotEmpty
 	private String firstName;
 
 	@Column(name = "last_name")
+	@NotEmpty
 	private String lastName;
 
-	@Column(name = "health_insurance")
-	private int healthInsurance;
+	@Column(name = "DOB")
+	@NotEmpty
+	private String dateOfBirth;
 
-	@Column(name = "dental_insurance")
-	private int dentalInsurance;
+	@Column(name = "SSN")
+	@NotEmpty
+	private String socialNum;
 
-	@Column(name = "vision_insurance")
-	private int visionInsurance;
+	/*
+	 * public int getEmployeeId() { return this.employeeId; }
+	 *
+	 * public void setEmployeeId(int inEmployeeId) { this.employeeId = inEmployeeId; }
+	 */
 
 	public String getFirstName() {
 		return this.firstName;
@@ -57,30 +68,6 @@ public class Employee extends BaseEntity {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public int getHealthInsurance() {
-		return this.healthInsurance;
-	}
-
-	public void setHealthInsurance(int newType) {
-		this.healthInsurance = newType;
-	}
-
-	public int getDentalInsurance() {
-		return this.dentalInsurance;
-	}
-
-	public void setDentalInsurance(int newType) {
-		this.dentalInsurance = newType;
-	}
-
-	public int getVisionInsurance() {
-		return this.visionInsurance;
-	}
-
-	public void setVisionInsurance(int newType) {
-		this.visionInsurance = newType;
 	}
 
 }

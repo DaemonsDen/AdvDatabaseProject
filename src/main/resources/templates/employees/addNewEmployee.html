@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'addemployee')}">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+	<div class="container my-5">
+		<h3>Add New Employee</h3>
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-10">
+					<form action="#" th:action="@{/addNewEmployee}" th:object="${employee}" method="post">
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="name" class="col-form-label">First Name</label>
+								<input type="text" class="form-control" id="firstName" placeholder="firstName"
+								th:field="*{firstName}">
+							</div>
+							<div class="form-group col-md-8">
+								<label for="name" class="col-form-label">Last Name</label> <input type="text"
+									class="form-control" id="lastName" placeholder="lastName"
+									th:field="*{lastName}">
+							</div>
+							<div class="form-group col-md-8">
+								<label for="name" class="col-form-label">DOB</label> <input type="text"
+									class="form-control" id="dateOfBirth" placeholder="DOB">
+							</div>
+							<div class="form-group col-md-8">
+								<label for="email" class="col-form-label">SS#</label> <input type="text"
+									class="form-control" id="ssn" placeholder="SS#">
+							</div>
+							<div class="form-group col-md-8">
+								<label for="email" class="col-form-label">Health:</label> <select class="form-control"
+									path="healthInsurance">
+									<option value="NONE" label="--- Select ---" />
+									<option value="PPO">PPO</option>
+									<option value="HMO">HMO</option>
+								</select>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="email" class="col-form-label">Dental:</label> <select class="form-control"
+									path="dentalInsurance">
+									<option value="NONE" label="--- Select ---" />
+									<option value="PPO">PPO</option>
+									<option value="HMO">HMO</option>
+								</select>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="email" class="col-form-label">Vision:</label> <select class="form-control"
+									path="visionInsurance">
+									<option value="NONE" label="--- Select ---" />
+									<option value="PPO">PPO</option>
+									<option value="HMO">HMO</option>
+								</select>
+							</div>
+
+							<div class="col-md-6">
+								<input type="submit" class="btn btn-primary" value="Add Employee">
+							</div>
+
+							<div class="form-group col-md-8"></div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
